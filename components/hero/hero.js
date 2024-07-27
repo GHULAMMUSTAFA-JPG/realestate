@@ -7,7 +7,7 @@ const Hero = () => {
 
   const slidesData = [
     {
-      image: "/images/bg/tall-bg.jpg",
+      image: "/images/hero/img3.jpg",
       heading: "Immigration visa Consulting",
       description: "Expert Guidance for a Seamless Immigration Journey",
       features: [
@@ -17,7 +17,7 @@ const Hero = () => {
       ],
     },
     {
-      image: "/images/bg/hero-rtl-bg.jpg",
+      image: "/images/hero/img4.jpg",
       heading: "Visa Application Assistance",
       description: "Streamlined Process for Hassle-Free Application",
       features: [
@@ -27,7 +27,7 @@ const Hero = () => {
       ],
     },
     {
-      image: "/images/bg/tall-bg.jpg",
+      image: "/images/hero/img2.jpg",
       heading: "Global Visa Solutions",
       description: "Navigating International Visa Requirements",
       features: ["Global Reach", "Expert Knowledge", "Efficient Processing"],
@@ -61,9 +61,10 @@ const Hero = () => {
                     .map((word, i) => (
                       <React.Fragment key={i}>
                         {word}
-                        {i !==
-                          slidesData[currentSlide].heading.split(" ").length -
-                            1 && <br />}
+                        {(i + 1) % 2 === 0 &&
+                          i + 1 !==
+                            slidesData[currentSlide].heading.split(" ")
+                              .length && <br />}{" "}
                       </React.Fragment>
                     ))}
                 </h1>
