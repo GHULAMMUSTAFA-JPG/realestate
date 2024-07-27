@@ -7,7 +7,7 @@ const Hero = () => {
 
   const slidesData = [
     {
-      image: "/images/bg/tall-bg1.jpg",
+      image: "/images/bg/tall-bg.jpg",
       heading: "Immigration visa Consulting",
       description: "Expert Guidance for a Seamless Immigration Journey",
       features: [
@@ -17,7 +17,7 @@ const Hero = () => {
       ],
     },
     {
-      image: "/images/bg/tall-bg2.jpg",
+      image: "/images/bg/hero-rtl-bg.jpg",
       heading: "Visa Application Assistance",
       description: "Streamlined Process for Hassle-Free Application",
       features: [
@@ -27,12 +27,11 @@ const Hero = () => {
       ],
     },
     {
-      image: "/images/bg/tall-bg3.jpg",
+      image: "/images/bg/tall-bg.jpg",
       heading: "Global Visa Solutions",
       description: "Navigating International Visa Requirements",
       features: ["Global Reach", "Expert Knowledge", "Efficient Processing"],
     },
-    // Add more slides as needed
   ];
 
   useEffect(() => {
@@ -42,14 +41,13 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, [slidesData.length]);
 
-  const ClickHandler = () => {
-    window.scrollTo(10, 0);
-  };
-
   return (
     <section
       className="hero hero__style-one bg_img"
-      style={{ backgroundImage: `url(${slidesData[currentSlide].image})` }}
+      style={{
+        backgroundImage: `url(${slidesData[currentSlide].image})`,
+        transition: "background-image 1s ease-in-out", // Smooth transition
+      }}
     >
       <div className="container">
         <div className="row align-items-center">
@@ -94,18 +92,10 @@ const Hero = () => {
               <Slide direction="up" triggerOnce={false} duration={1800}>
                 <div>
                   <div className="btns">
-                    <Link
-                      onClick={ClickHandler}
-                      className="thm-btn"
-                      href="/contact"
-                    >
+                    <Link className="thm-btn" href="/contact">
                       Book Appointment
                     </Link>
-                    <Link
-                      onClick={ClickHandler}
-                      className="thm-btn thm-btn--white"
-                      href="/about"
-                    >
+                    <Link className="thm-btn thm-btn--white" href="/about">
                       Read Story
                     </Link>
                   </div>
