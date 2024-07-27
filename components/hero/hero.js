@@ -10,7 +10,7 @@ const Hero = () => {
   return (
     <section
       className="hero hero__style-one bg_img"
-      style={{ backgroundImage: `url(${"/images/bg/modh-bg.jpeg"})` }}
+      style={{ backgroundImage: `url(${"/images/bg/tall-bg.jpg"})` }}
     >
       <div className="container">
         <div className="row align-items-center">
