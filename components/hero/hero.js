@@ -1,8 +1,47 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Slide } from "react-awesome-reveal";
 import Link from "next/link";
 
 const Hero = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const slidesData = [
+    {
+      image: "/images/bg/tall-bg1.jpg",
+      heading: "Immigration visa Consulting",
+      description: "Expert Guidance for a Seamless Immigration Journey",
+      features: [
+        "Expert Legal Support",
+        "Meeting Your Unique Needs",
+        "Tailored Immigration Solutions",
+      ],
+    },
+    {
+      image: "/images/bg/tall-bg2.jpg",
+      heading: "Visa Application Assistance",
+      description: "Streamlined Process for Hassle-Free Application",
+      features: [
+        "Personalized Advice",
+        "Comprehensive Support",
+        "Success-Driven Approach",
+      ],
+    },
+    {
+      image: "/images/bg/tall-bg3.jpg",
+      heading: "Global Visa Solutions",
+      description: "Navigating International Visa Requirements",
+      features: ["Global Reach", "Expert Knowledge", "Efficient Processing"],
+    },
+    // Add more slides as needed
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % slidesData.length);
+    }, 3000); // Change slide every 3 seconds
+    return () => clearInterval(interval);
+  }, [slidesData.length]);
+
   const ClickHandler = () => {
     window.scrollTo(10, 0);
   };
@@ -10,35 +49,49 @@ const Hero = () => {
   return (
     <section
       className="hero hero__style-one bg_img"
-      style={{ backgroundImage: `url(${"/images/bg/tall-bg.jpg"})` }}
+      style={{ backgroundImage: `url(${slidesData[currentSlide].image})` }}
     >
       <div className="container">
         <div className="row align-items-center">
           <div className="col-xl-6 col-lg-7">
             <div className="hero__content">
-              <Slide direction="up" triggerOnce={"false"} duration={1200}>
+              {/* Header */}
+              <Slide direction="up" triggerOnce={false} duration={1200}>
                 <h1>
-                  Immigration visa <br /> <span>Consulting</span>
+                  {slidesData[currentSlide].heading
+                    .split(" ")
+                    .map((word, i) => (
+                      <React.Fragment key={i}>
+                        {word}
+                        {i !==
+                          slidesData[currentSlide].heading.split(" ").length -
+                            1 && <br />}
+                      </React.Fragment>
+                    ))}
                 </h1>
               </Slide>
-              <Slide direction="up" triggerOnce={"false"} duration={1400}>
-                <p>Expert Guidance for a Seamless Immigration Journey</p>
+              {/* Description */}
+              <Slide direction="up" triggerOnce={false} duration={1400}>
+                <p>{slidesData[currentSlide].description}</p>
               </Slide>
               <ul className="xb-list list-unstyled mt-40 mb-60">
-                <Slide direction="up" triggerOnce={"false"} duration={1600}>
-                  <li>
-                    <i className="far fa-check"></i>Expert Legal Support
-                  </li>
-                  <li>
-                    <i className="far fa-check"></i>Meeting Your Unique Needs
-                  </li>
-                  <li>
-                    <i className="far fa-check"></i>Tailored Immigration
-                    Solutions
-                  </li>
-                </Slide>
+                {/* List */}
+                {slidesData[currentSlide].features.map((feature, i) => (
+                  <Slide
+                    key={i}
+                    direction="up"
+                    triggerOnce={false}
+                    duration={1600 + i * 200}
+                  >
+                    <li>
+                      <i className="far fa-check"></i>
+                      {feature}
+                    </li>
+                  </Slide>
+                ))}
               </ul>
-              <Slide direction="up" triggerOnce={"false"} duration={1800}>
+              {/* Buttons */}
+              <Slide direction="up" triggerOnce={false} duration={1800}>
                 <div>
                   <div className="btns">
                     <Link
